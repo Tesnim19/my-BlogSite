@@ -7,7 +7,8 @@ class Blog(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     content = Column(String, nullable=False)
-    author_id = Column(Integer, ForeignKey("user.id"))
+    author_id = Column(Integer, ForeignKey("author.id"))
     created_at = Column(DateTime, default=datetime.now)
+    is_active = Column(Boolean, default=False)
 
-    author = relationship("User", back_populates="blogs")
+    author = relationship("Author", back_populates="blogs") 

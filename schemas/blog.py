@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, root_validator
-from datetime import date
+from datetime import datetime
 
 class CreateBlog(BaseModel):
     title:str
@@ -9,7 +9,17 @@ class CreateBlog(BaseModel):
 class ShowBlog(BaseModel):
     title: str
     content : str
-    created_at : date
+    created_at : datetime
 
-    class Config():
-        orm_mode = True
+    
+
+class UpdateBlog(CreateBlog):
+    is_active:bool
+    # title:str
+    # content: str
+    # created_at:str
+    # class Config():
+    #     orm_mode = True
+    
+
+    
