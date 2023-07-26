@@ -1,13 +1,23 @@
 from logging.config import fileConfig
-
+from sqlalchemy import MetaData, create_engine
 from db.base_class import Base
-
-target_metadata = Base.metadata
+from db.models.blog import Blog
+from db.models.author import Author
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+
+engine = create_engine('postgresql://user:minset123@localhost:5432/blogdb')
+
+metadata = MetaData()
+metadata.bind = engine
+Base.metadata = metadata
+
+#target_metadata = metadata
+
+target_metadata =[ Blog.metadata, Author.metadata]
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,7 +32,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
