@@ -7,6 +7,7 @@ class UserCreate(BaseModel):
 
 class ShowUser(BaseModel):
     id:int
+    name: str
     email : EmailStr
     is_active : bool
 

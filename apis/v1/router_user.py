@@ -8,8 +8,8 @@ from db.repository.author import create_new_user
 
 
 router = APIRouter()
-#  response_model= ShowUser,
-@router.post("/user", status_code=status.HTTP_201_CREATED)
+
+@router.post("/user",response_model= ShowUser, status_code=status.HTTP_201_CREATED)
 def create_user(user : UserCreate, db : Session = Depends(get_db)):
     user = create_new_user(user=user, db=db)
     return user
