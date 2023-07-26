@@ -1,12 +1,12 @@
 from sqlalchemy.orm import Session
 
-from schemas.user import UserCreate
-from db.models.user import User
+from schemas.author import UserCreate
+from db.models.author import Author
 from core.hashing import Hasher
 
 
 def create_new_user(user: UserCreate, db:Session):
-    user = User(
+    user = Author(
         email = user.email,
         password = Hasher.get_password_hash(user.password),
         is_active=True,
