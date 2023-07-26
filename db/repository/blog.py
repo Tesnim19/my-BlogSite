@@ -17,19 +17,17 @@ def retreive_blog(id:int, db: Session):
     return blog
 
 def list_blogs(db : Session):
-    blogs = db.query(Blog).filter(Blog.is_active==True).all()
-    # for blog in blogs:
-    #     print(blog.is_active)
+    blogs = db.query(Blog).all()
     return blogs
 
 def update_blog(blog: UpdateBlog, id: int, db: Session):
-    old_blog = db.query(Blog).filter(Blog.id ==id)
-    encoded = jsonable_encoder(old_blog)
-    if not old_blog.first():
-        print("NONE")
+    old_blog = db.query(Blog).filter(Blog.id ==id).first()
+    if not old_blog:
         return
-   
-    old_blog.update({"is_active":blog.is_active},synchronize_session=False)
+    old_blog.title = blog.title
+    old_blog.content = blog.content
+    old_blog.is_active = blog.is_active
+    db.add(old_blog)
     db.commit()
     return old_blog
 

@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, root_validator
+from schemas.author import ShowUser
 from datetime import datetime
 
 class CreateBlog(BaseModel):
@@ -9,6 +10,7 @@ class CreateBlog(BaseModel):
 class ShowBlog(BaseModel):
     title: str
     content : str
+    author: ShowUser
     created_at : datetime
 
     
