@@ -21,15 +21,29 @@ def list_blogs(db : Session):
     return blogs
 
 def update_blog(blog: UpdateBlog, id: int, db: Session):
-    old_blog = db.query(Blog).filter(Blog.id ==id).first()
-    if not old_blog:
-        return
-    old_blog.title = blog.title
-    old_blog.content = blog.content
-    old_blog.is_active = blog.is_active
-    db.add(old_blog)
+    old_blog = db.query(Blog).filter(Blog.id ==id)
+    old_blog.update(jsonable_encoder(blog))
     db.commit()
-    return old_blog
+    return old_blog.first()
+
+    # update using value pair
+    # for key, value in blog.dict().items():
+    #     setattr(old_blog, key, value)
+    
+    # db.commit()
+    # db.refresh(old_blog)
+    # return old_blog
+    # if not old_blog:
+    #     return
+    
+
+    # update manually
+    # old_blog.title = blog.title
+    # old_blog.content = blog.content
+    # old_blog.is_active = blog.is_active
+    # db.add(old_blog)
+    # db.commit()
+    # return old_blog
 
 def delete_blog(id : int, author_id: int, db: Session):
     blog = db.query(Blog).filter(Blog.id == id)

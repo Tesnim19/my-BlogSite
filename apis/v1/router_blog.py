@@ -35,7 +35,7 @@ def get_blog(id:int, db: Session=Depends(get_db)):
 
 
 @router.put("/blog/{id}" ,response_model=ShowBlog)
-def update_a_blog(blog: UpdateBlog, id:int, db: Session=Depends(get_db)):
+def update_a_blog(id:int,blog: UpdateBlog,  db: Session=Depends(get_db)):
     
     blog = update_blog( blog=blog,id=id, db=db)
     if not blog:
