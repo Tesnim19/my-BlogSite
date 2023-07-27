@@ -4,7 +4,7 @@ from core.config import settings
 from db.database import engine
 from db.base import Base
 from apis.base import api_router
-# from pydantic import BaseModel
+
 
 def create_tables():
    Base.metadata.create_all(bind=engine)
@@ -17,11 +17,6 @@ def start_application():
     create_tables()
     include_router(app)
     return app
-
-# class Item(BaseModel):
-#     name: str
-#     price: float
-#     is_order: Union[bool, None] = None
 
 app = start_application()
 

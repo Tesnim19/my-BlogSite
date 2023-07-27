@@ -9,7 +9,7 @@ from db.repository.blog import create_new_blog, retreive_blog, list_blogs, delet
 
 router = APIRouter()
 
-# , response_model=List[ShowBlog]
+
 @router.get("/blogs", response_model=List[ShowBlog])
 def get_all_blogs(db: Session = Depends(get_db)):
     blogs = list_blogs(db=db)
@@ -18,7 +18,6 @@ def get_all_blogs(db: Session = Depends(get_db)):
         print(type(blog.created_at))
     return blogs
 
-#  response_model = ShowBlog,
 @router.post("/blog", status_code = status.HTTP_201_CREATED)
 async def create_blog(blog: CreateBlog, db: Session = Depends(get_db)):
     blog = create_new_blog(blog=blog, db=db, author_id = 1)

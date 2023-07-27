@@ -17,11 +17,5 @@ class ShowBlog(BaseModel):
 
 class UpdateBlog(CreateBlog):
     is_active:bool
-    # title:str
-    # content: str
-    # created_at:str
-    # class Config():
-    #     orm_mode = True
-    
 
     
