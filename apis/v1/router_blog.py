@@ -13,9 +13,6 @@ router = APIRouter()
 @router.get("/blogs", response_model=List[ShowBlog])
 def get_all_blogs(db: Session = Depends(get_db)):
     blogs = list_blogs(db=db)
-    for blog in blogs:
-        print(blog)
-        print(type(blog.created_at))
     return blogs
 
 @router.post("/blog", status_code = status.HTTP_201_CREATED)
