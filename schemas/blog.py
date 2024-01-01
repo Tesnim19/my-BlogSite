@@ -11,7 +11,7 @@ class ShowBlog(BaseModel):
     title: str
     content : str
     author: ShowUser
-    created_at : datetime
+    created_at : datetime 
 
     
 
