@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from schemas.blog import CreateBlog, UpdateBlog#, UpdateBlog
 from db.models.blog import Blog
-from fastapi.encoders import jsonable_encoder
+# from fastapi.encoders import jsonable_encoder 
 
 
 
